@@ -120,46 +120,49 @@ const resetGuesses = () => {
 
 // Add event listener to grid.
 grid.addEventListener('click', function (event) {
-    // The event target is our clicked item
-    let clicked = event.target;
+    if (start === 1) {
+        // The event target is our clicked item
+        let clicked = event.target;
 
-    // Do not allow the grid section itself to be selected; only select divs inside the grid.
-    if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected') || clicked.parentNode.classList.contains('match')) {
-        return;
-    }
-
-    if (count < 2) {
-        count++;
-        if (count === 1) {
-            // Assign first guess.
-            firstGuess = clicked.parentNode.dataset.name;
-            console.log(firstGuess);
-            clicked.parentNode.classList.add('selected');
-        } else {
-            // Assign second guess.
-            secondGuess = clicked.parentNode.dataset.name;
-            console.log(secondGuess);
-            clicked.parentNode.classList.add('selected');
+        // Do not allow the grid section itself to be selected; only select divs inside the grid.
+        if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected') || clicked.parentNode.classList.contains('match')) {
+            return;
         }
-        // If both guesses are not empty.
-        if (firstGuess && secondGuess) {
-            // and the first guess matches the second match.
-            if (firstGuess === secondGuess) {
-                setTimeout(match, delay);
+
+        if (count < 2) {
+            count++;
+            if (count === 1) {
+                // Assign first guess.
+                firstGuess = clicked.parentNode.dataset.name;
+                console.log(firstGuess);
+                clicked.parentNode.classList.add('selected');
+            } else {
+                // Assign second guess.
+                secondGuess = clicked.parentNode.dataset.name;
+                console.log(secondGuess);
+                clicked.parentNode.classList.add('selected');
             }
-            setTimeout(resetGuesses, delay);
+            // If both guesses are not empty.
+            if (firstGuess && secondGuess) {
+                // and the first guess matches the second match.
+                if (firstGuess === secondGuess) {
+                    setTimeout(match, delay);
+                }
+                setTimeout(resetGuesses, delay);
+            }
+            // Set previous target to clicked.
+            previousTarget = clicked;
         }
-        // Set previous target to clicked.
-        previousTarget = clicked;
     }
 })
 
 
-startBtn.addEventListener("click", function () {
+startBtn.addEventListener('click', function () {
     startBtn.style.visibility = 'hidden';
+    start = 1;
 
-    const minutesLabel = document.getElementById("minutes");
-    const secondsLabel = document.getElementById("seconds");
+    const minutesLabel = document.getElementById('minutes');
+    const secondsLabel = document.getElementById('seconds');
     let totalSeconds = 0;
     setInterval(setTime, 1000);
 
@@ -170,9 +173,9 @@ startBtn.addEventListener("click", function () {
     }
 
     function pad(val) {
-        var valString = val + "";
+        const valString = val + '';
         if (valString.length < 2) {
-            return "0" + valString;
+            return '0' + valString;
         } else {
             return valString;
         }
