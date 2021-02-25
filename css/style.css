@@ -10,7 +10,7 @@ body {
 }
 
 .grid {
-    max-width: 960px;
+    max-width: 840px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -27,8 +27,8 @@ body {
 .card,
 .back,
 .front {
-    height: 150px;
-    width: 150px;
+    height: 130px;
+    width: 130px;
 }
 
 .back,
@@ -56,4 +56,25 @@ body {
 
 .match .front {
     background: #011144 !important;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    max-width: 50%;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 200%;
+    margin-bottom: 30px;
+}
+
+.start {
+    font-weight: bold;
+}
+
+.start:hover {
+    color: #ff0000;
+    cursor: pointer;
 }

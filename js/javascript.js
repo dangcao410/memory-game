@@ -60,6 +60,8 @@ let secondGuess = '';
 let count = 0;
 let previousTarget = null;
 let delay = 1200;
+let start = 0;
+const startBtn = document.querySelector('.start');
 
 // Grab the div with an id of root.
 const game = document.getElementById('game');
@@ -151,3 +153,28 @@ grid.addEventListener('click', function (event) {
         previousTarget = clicked;
     }
 })
+
+
+startBtn.addEventListener("click", function () {
+    startBtn.style.visibility = 'hidden';
+
+    const minutesLabel = document.getElementById("minutes");
+    const secondsLabel = document.getElementById("seconds");
+    let totalSeconds = 0;
+    setInterval(setTime, 1000);
+
+    function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    }
+
+    function pad(val) {
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
+    }
+});
