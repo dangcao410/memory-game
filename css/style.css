@@ -6,7 +6,7 @@
 
 body {
     margin: 20px 0;
-    background: #6589F9;
+    background: #011144;
 }
 
 .grid {
@@ -44,7 +44,7 @@ body {
 
 .back {
     transform: rotateY(180deg);
-    background-color: #6589F9;
+    background-color: #011144;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -55,5 +55,5 @@ body {
 }
 
 .match .front {
-    background: #6589F9 !important;
+    background: #011144 !important;
 }
