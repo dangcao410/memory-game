@@ -97,6 +97,11 @@ const win = document.querySelector('.win');
 const minutesWin = document.getElementById('minutes-win');
 const secondsWin = document.getElementById('seconds-win');
 const time = document.getElementById('time');
+let movesCount = 0;
+const moves = document.getElementById('moves');
+const movesValue = document.getElementById('moves-value');
+const movesWin = document.getElementById('moves-value-win');
+
 
 // Grab the div with an id of root.
 const game = document.getElementById('game');
@@ -146,9 +151,11 @@ const match = () => {
         stopTimer();
         setTimeout(() => {
             time.style.visibility = 'hidden';
+            moves.style.visibility = 'hidden';
             win.style.display = 'block';
             secondsWin.innerHTML = secondsLabel.textContent;
             minutesWin.innerHTML = minutesLabel.textContent;
+            movesWin.innerHTML = movesCount.toString();
         }, delay);
     }
 }
@@ -196,6 +203,8 @@ grid.addEventListener('click', function (event) {
                     setTimeout(match, delay);
                 }
                 setTimeout(resetGuesses, delay);
+                movesCount ++;
+                movesValue.innerHTML = movesCount.toString();
             }
             // Set previous target to clicked.
             previousTarget = clicked;
