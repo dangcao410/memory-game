@@ -50,6 +50,35 @@ const cardsArray = [
     },
 ];
 
+/*-----------------------------------------------------------------------------------------------------------*/
+//Time.
+const minutesLabel = document.getElementById('minutes');
+const secondsLabel = document.getElementById('seconds');
+let totalSeconds = 0;
+let timerInterval;
+function setTime() {
+    ++totalSeconds;
+    secondsLabel.innerHTML = pad(totalSeconds % 60);
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+    const valString = val + '';
+    if (valString.length < 2) {
+        return '0' + valString;
+    } else {
+        return valString;
+    }
+}
+
+function startTimer() {
+    timerInterval = setInterval(setTime, 1000);
+}
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+/*-----------------------------------------------------------------------------------------------------------*/
+
 // Randomize game grid on each load.
 const gameGrid = cardsArray.concat(cardsArray).sort(function () {
     return 0.5 - Math.random();
@@ -62,6 +91,8 @@ let previousTarget = null;
 let delay = 1200;
 let start = 0;
 const startBtn = document.querySelector('.start');
+let finish = 0;
+let countMatch = 0;
 
 // Grab the div with an id of root.
 const game = document.getElementById('game');
@@ -104,6 +135,12 @@ const match = () => {
     selected.forEach((card) => {
         card.classList.add('match');
     })
+
+    countMatch = document.getElementsByClassName('match').length;
+    console.log(countMatch);
+    if (countMatch === 24) {
+        stopTimer();
+    }
 }
 
 const resetGuesses = () => {
@@ -153,6 +190,11 @@ grid.addEventListener('click', function (event) {
             // Set previous target to clicked.
             previousTarget = clicked;
         }
+    } else {
+        startBtn.style.animation = 'start-animation 1s';
+        setTimeout(() => {
+            startBtn.style.animation = '';
+        }, 1000);
     }
 })
 
@@ -161,23 +203,8 @@ startBtn.addEventListener('click', function () {
     startBtn.style.visibility = 'hidden';
     start = 1;
 
-    const minutesLabel = document.getElementById('minutes');
-    const secondsLabel = document.getElementById('seconds');
-    let totalSeconds = 0;
-    setInterval(setTime, 1000);
-
-    function setTime() {
-        ++totalSeconds;
-        secondsLabel.innerHTML = pad(totalSeconds % 60);
-        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-    }
-
-    function pad(val) {
-        const valString = val + '';
-        if (valString.length < 2) {
-            return '0' + valString;
-        } else {
-            return valString;
-        }
-    }
+    startTimer();
 });
+
+
+
