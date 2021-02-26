@@ -91,8 +91,12 @@ let previousTarget = null;
 let delay = 1200;
 let start = 0;
 const startBtn = document.querySelector('.start');
-let finish = 0;
+const replayBtn = document.querySelector('.replay');
 let countMatch = 0;
+const win = document.querySelector('.win');
+const minutesWin = document.getElementById('minutes-win');
+const secondsWin = document.getElementById('seconds-win');
+const time = document.getElementById('time');
 
 // Grab the div with an id of root.
 const game = document.getElementById('game');
@@ -140,6 +144,12 @@ const match = () => {
     console.log(countMatch);
     if (countMatch === 24) {
         stopTimer();
+        setTimeout(() => {
+            time.style.visibility = 'hidden';
+            win.style.display = 'block';
+            secondsWin.innerHTML = secondsLabel.textContent;
+            minutesWin.innerHTML = minutesLabel.textContent;
+        }, delay);
     }
 }
 
@@ -202,9 +212,9 @@ grid.addEventListener('click', function (event) {
 startBtn.addEventListener('click', function () {
     startBtn.style.visibility = 'hidden';
     start = 1;
-
     startTimer();
 });
 
-
-
+replayBtn.addEventListener('click', function () {
+    location.reload();
+});

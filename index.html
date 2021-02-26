@@ -7,10 +7,17 @@
 </head>
 <body>
     <div class="main">
-        <span class="time">Time: <label id="minutes">00</label>:<label id="seconds">00</label></span>
-        <span class="start">START</span>
+        <span class="time" id="time">Time: <label id="minutes">00</label>:<label id="seconds">00</label></span>
+        <button class="start">START</button>
     </div>
     <div id="game"></div>
+
+    <div class="win">
+        <img src="img/champion.png" alt="" width="200">
+        <p class="win-text">YOU ARE THE CHAMPION</p>
+        <p>Time: <label id="minutes-win">00</label>:<label id="seconds-win">00</label></p>
+        <button class="replay">REPLAY</button>
+    </div>
 
     <script src="js/javascript.js"></script>
 </body>

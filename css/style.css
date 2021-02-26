@@ -72,6 +72,7 @@ body {
 
 .start {
     font-weight: bold;
+    font-size: 80%;
 }
 
 .start:hover {
@@ -80,7 +81,35 @@ body {
 }
 
 @keyframes start-animation {
-    0%   {color: #ffffff;}
+    0%   {color: #000000;}
     50%  {color: #ff0000;}
-    100% {color: #ffffff;}
+    100% {color: #000000;}
+}
+
+.win {
+    color: #ffffff;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 200%;
+    padding-top: 5%;
+    display: none;
+}
+
+.win-text {
+    font-weight: bold;
+}
+
+.replay {
+    font-weight: bold;
+    font-size: 80%;
+}
+
+.replay:hover {
+    color: #ff0000;
+    cursor: pointer;
 }
