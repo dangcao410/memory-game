@@ -113,3 +113,8 @@ body {
     color: #ff0000;
     cursor: pointer;
 }
+
+.time, .moves {
+    width: 30%;
+    margin: 0px;
+}
